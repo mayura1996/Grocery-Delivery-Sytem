@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: payment-service
+  jpa:
+    generate-ddl: true
+server:
+  port: 9092
+  servlet:
+    context-path: /payments
