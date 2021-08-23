@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: cloud-gateway-server
+  cloud:
+    gateway:
+      routes:
+      - id: order-service
+        uri: lb://order-service
+        predicates:
+        - Path=/orders/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: order-service
+            fallbackuri: forward:/fallback/orderServiceFallback
+      - id: payment-service
+        uri: lb://payment-service
+        predicates:
+        - Path=/payments/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: payment-service
+            fallbackuri: forward:/fallback/paymentServiceFallback
+      - id: restaurant-service
+        uri: lb://restaurant-service
+        predicates:
+        - Path=/restaurants/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: restaurant-service
+            fallbackuri: forward:/fallback/restaurantServiceFallback
+server:
+  port: 8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
