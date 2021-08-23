@@ -15,7 +15,7 @@ public class Invoice {
 	private double price;
 
 	@JsonCreator
-	public Invoice(@JsonProperty("invoiceId") Integer invoiceId, @JsonProperty("price") double price) {
+	public Invoice(@JsonProperty("orderId") Integer invoiceId, @JsonProperty("price") double price) {
 		this.invoiceId = invoiceId;
 		this.price = price;
 	}
