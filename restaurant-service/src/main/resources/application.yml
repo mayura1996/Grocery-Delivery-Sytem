@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: restaurant-service
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 20KB
+      max-file-size: 200MB
+  jpa:
+    generate-ddl: true
+server:
+  port: 9090
+  servlet:
+    context-path: /restaurants
