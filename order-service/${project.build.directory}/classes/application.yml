@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: order-service
+  jpa:
+    generate-ddl: true
+server:
+  port: 9091
+  servlet:
+    context-path: /orders
